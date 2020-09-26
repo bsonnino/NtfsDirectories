@@ -1,0 +1,46 @@
+﻿<Window x:Class="NtfsDirectories.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Drive" VerticalAlignment="Center"/>
+            <ComboBox x:Name="DrvCombo" Margin="5,0" Width="100" 
+                      VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Level" VerticalAlignment="Center"/>
+            <ComboBox x:Name="LevelCombo" Margin="5,0" Width="100" 
+                      VerticalContentAlignment="Center"  
+                      SelectionChanged="LevelCombo_OnSelectionChanged">
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>Max</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <ListBox x:Name="DirectoriesList" Grid.Row="1" 
+                 VirtualizingPanel.IsVirtualizing="True"
+                 VirtualizingPanel.IsVirtualizingWhenGrouping="True" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" 
+                                   Margin="5,0" Width="450"/>
+                        <TextBlock Text="{Binding Size,StringFormat=N0}" 
+                                   Margin="5,0" Width="150" TextAlignment="Right"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock x:Name="StatusTxt" Grid.Row="2" HorizontalAlignment="Center" Margin="5"/>
+    </Grid>
+</Window>
