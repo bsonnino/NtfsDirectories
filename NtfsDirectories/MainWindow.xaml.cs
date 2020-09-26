@@ -28,7 +28,7 @@ namespace NtfsDirectories
         {
             InitializeComponent();
             var ntfsDrives = DriveInfo.GetDrives()
-                .Where(d => d.DriveFormat == "NTFS").ToList();
+                .Where(d => d.IsReady && d.DriveFormat == "NTFS").ToList();
             DrvCombo.ItemsSource = ntfsDrives;
             DrvCombo.SelectionChanged += DrvCombo_SelectionChanged;
         }
